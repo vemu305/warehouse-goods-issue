@@ -1,0 +1,157 @@
+
+<mvc:View
+    controllerName="warehousegoodsissuefe.controller.ItemDetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap">
+
+    <Page
+        title="Material Inventory Details"
+        showNavButton="true"
+        navButtonPress=".onBack">
+
+        <content>
+            <uxap:ObjectPageLayout
+                showAnchorBar="true"
+                upperCaseAnchorBar="false">
+
+                <uxap:headerTitle>
+                    <uxap:ObjectPageHeader
+                        objectTitle="{itemView>/materialName}"
+                        objectSubtitle="{itemView>/materialId}">
+                        <uxap:actions>
+                            <ObjectStatus
+                                text="{itemView>/criticality}"
+                                state="{itemView>/criticalityState}" />
+                        </uxap:actions>
+                    </uxap:ObjectPageHeader>
+                </uxap:headerTitle>
+
+                <uxap:sections>
+
+                    <uxap:ObjectPageSection title="Item Information">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <Label text="Goods Issue ID" />
+                                        <Text text="{itemView>/wiId}" />
+
+                                        <Label text="Item Number" />
+                                        <Text text="{itemView>/item}" />
+
+                                        <Label text="Material ID" />
+                                        <Text text="{itemView>/materialId}" />
+
+                                        <Label text="Material Name" />
+                                        <Title
+                                            text="{itemView>/materialName}"
+                                            level="H3" />
+
+                                        <Label text="Description" />
+                                        <Text text="{itemView>/description}" />
+
+                                        <Label text="Unit of Measure" />
+                                        <Text text="{itemView>/uom}" />
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="Plant and Storage Location">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <Label text="Plant ID" />
+                                        <Text text="{itemView>/plantId}" />
+
+                                        <Label text="Plant Name" />
+                                        <Text text="{itemView>/plantName}" />
+
+                                        <Label text="Storage Location" />
+                                        <Text text="{itemView>/storageLocation}" />
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="Inventory Stock Validation">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin" gap="1rem">
+
+                                        <ObjectStatus
+                                            text="{itemView>/criticalityText}"
+                                            state="{itemView>/criticalityState}"
+                                            title="Inventory Result" />
+
+                                        <HBox
+                                            wrap="Wrap"
+                                            justifyContent="SpaceAround">
+
+                                            <VBox class="sapUiMediumMargin">
+                                                <Label text="Ordered Quantity" />
+                                                <ObjectNumber
+                                                    number="{itemView>/orderedQty}"
+                                                    unit="{itemView>/uom}" />
+                                            </VBox>
+
+                                            <VBox class="sapUiMediumMargin">
+                                                <Label text="Available Quantity" />
+                                                <ObjectNumber
+                                                    number="{itemView>/availableQty}"
+                                                    unit="{itemView>/uom}" />
+                                            </VBox>
+
+                                            <VBox class="sapUiMediumMargin">
+                                                <Label text="Balance Quantity" />
+                                                <ObjectNumber
+                                                    number="{itemView>/balanceQty}"
+                                                    unit="{itemView>/uom}"
+                                                    state="{itemView>/criticalityState}" />
+                                            </VBox>
+                                        </HBox>
+
+                                        <MessageStrip
+                                            text="{= ${itemView>/criticality} === 'RED' ? 'Insufficient stock. The requested quantity exceeds available inventory.' : (${itemView>/criticality} === 'YELLOW' ? 'Stock exactly meets the requirement. There is no additional inventory buffer.' : 'Sufficient stock is available beyond the requested quantity.') }"
+                                            type="{= ${itemView>/criticality} === 'RED' ? 'Error' : (${itemView>/criticality} === 'YELLOW' ? 'Warning' : 'Success') }"
+                                            showIcon="true"
+                                            showCloseButton="false" />
+
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="Refurbished Product Details">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <Label text="Refurbished Product" />
+                                        <Text text="{itemView>/refurbishedProduct}" />
+
+                                        <Label text="Reference Material" />
+                                        <Text text="{itemView>/referenceMaterial}" />
+
+                                        <Label text="Serial Number" />
+                                        <Text text="{itemView>/serialNumber}" />
+
+                                        <Label text="Remarks" />
+                                        <Text text="{itemView>/refurbishmentRemarks}" />
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+        </content>
+    </Page>
+</mvc:View>

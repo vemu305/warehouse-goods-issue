@@ -1,0 +1,69 @@
+<mvc:View
+    controllerName="warehousegoodsissuefe.controller.View"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        title="Warehouse Goods Issue"
+        showNavButton="false"
+    >
+        <content>
+            <Label text="Warehouse Issue ID" />
+
+            <HBox
+                alignItems="Center"
+                width="100%"
+            >
+                <Input
+                    id="issueIdInput"
+                    placeholder="Enter or scan Warehouse Issue ID"
+                    width="100%"
+                />
+
+                <Button
+                    text="Scan"
+                    icon="sap-icon://camera"
+                    type="Emphasized"
+                    press=".onOpenScanner"
+                    class="sapUiTinyMarginBegin"
+                />
+            </HBox>
+
+            <Button
+                text="Submit"
+                type="Emphasized"
+                press=".onSubmit"
+                class="sapUiSmallMarginTop"
+            />
+        </content>
+        <dependents>
+            <Dialog
+                id="scannerDialog"
+                title="Scan Warehouse Issue Barcode"
+                contentWidth="35rem"
+                stretchOnPhone="true"
+                afterOpen=".onScannerDialogOpen"
+                afterClose=".onScannerDialogClose"
+            >
+                <content>
+                    <VBox class="sapUiMediumMargin">
+                        <Text
+                            text="Position the barcode inside the camera scanning area."
+                        />
+                        <core:HTML
+                            content="&lt;div id='barcode-reader' style='width:100%;'&gt;&lt;/div&gt;"
+                        />
+                    </VBox>
+                </content>
+
+                <beginButton>
+                    <Button
+                        text="Close Scanner"
+                        press=".onCloseScanner"
+                    />
+                </beginButton>
+            </Dialog>
+        </dependents>
+    </Page>
+</mvc:View>

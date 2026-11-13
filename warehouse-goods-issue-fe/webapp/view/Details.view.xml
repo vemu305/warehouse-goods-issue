@@ -1,0 +1,448 @@
+<mvc:View
+    controllerName="warehousegoodsissuefe.controller.Details"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+    <Page
+        title="Warehouse Goods Issue"
+        showNavButton="true"
+        navButtonPress=".onBack"
+    >
+        <content>
+            <uxap:ObjectPageLayout
+                id="goodsIssueObjectPage"
+                showAnchorBar="true"
+                upperCaseAnchorBar="false"
+            >
+                <uxap:headerTitle>
+                    <uxap:ObjectPageHeader
+                        objectTitle="{view>/wiId}"
+                        objectSubtitle="{view>/status}"
+                    >
+                        <uxap:actions>
+                            <ObjectStatus
+                                title="Status"
+                                text="{view>/status}"
+                                state="Information"
+                            />
+                        </uxap:actions>
+                    </uxap:ObjectPageHeader>
+                </uxap:headerTitle>
+
+                <!-- Goods Issue Summary -->
+                <uxap:sections>
+                    <uxap:ObjectPageSection title="Goods Issue Information">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <HBox wrap="Wrap">
+                                            <VBox
+                                                class="sapUiSmallMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="WI ID" />
+                                                <Text text="{view>/wiId}" />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiSmallMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Document Date" />
+                                                <Text
+                                                    text="{view>/documentDate}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiSmallMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Document Time" />
+                                                <Text
+                                                    text="{view>/documentTime}"
+                                                />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <!-- Employee Information -->
+                    <uxap:ObjectPageSection title="Goods Issue Performed By">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <HBox wrap="Wrap">
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Employee ID" />
+                                                <Text
+                                                    text="{view>/employeeId}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Employee Name" />
+                                                <Text
+                                                    text="{view>/employeeName}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Manager on Duty" />
+                                                <Text
+                                                    text="{view>/managerOnDuty}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Manager ID" />
+                                                <Text
+                                                    text="{view>/managerId}"
+                                                />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <!-- Plant Information -->
+                    <uxap:ObjectPageSection title="Plant and Location">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <HBox wrap="Wrap">
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Plant ID" />
+                                                <Text text="{view>/plantId}" />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Plant Name" />
+                                                <Text
+                                                    text="{view>/plantName}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Plant Location" />
+                                                <Text
+                                                    text="{view>/plantLocation}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Company Code" />
+                                                <Text
+                                                    text="{view>/companyCode}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label
+                                                    text="Storage Location"
+                                                />
+                                                <Text
+                                                    text="{view>/storageLocation}"
+                                                />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <!-- Item Table -->
+                    <uxap:ObjectPageSection title="Goods Issue Items">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <Table
+                                        items="{view>/items}"
+                                        class="sapUiResponsiveMargin"
+                                        width="auto"
+                                        growing="true"
+                                        growingScrollToLoad="true"
+                                    >
+                                        <columns>
+                                            <Column>
+                                                <Text text="Item" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Material ID" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Material Name" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Description" />
+                                            </Column>
+                                            <Column hAlign="End">
+                                                <Text text="Qty" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="UOM" />
+                                            </Column>
+
+                                            <Column hAlign="End">
+                                                <Text text="Ordered Qty" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="UOM" />
+                                            </Column>
+                                            <Column hAlign="End">
+                                                <Text text="Available Qty" />
+                                            </Column>
+                                            <Column hAlign="End">
+                                                <Text text="Balance Qty" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Criticality" />
+                                            </Column>
+                                        </columns>
+
+                                        <items>
+                                            <ColumnListItem
+                                                type="Navigation"
+                                                press=".onItemPress"
+                                            >
+                                                <cells>
+                                                    <Text text="{view>item}" />
+                                                    <Text
+                                                        text="{view>materialId}"
+                                                    />
+                                                    <Text
+                                                        text="{view>materialName}"
+                                                    />
+                                                    <Text
+                                                        text="{view>description}"
+                                                    />
+                                                    <ObjectNumber
+                                                        number="{view>quantity}"
+                                                    />
+                                                    <Text text="{view>uom}" />
+
+                                                    <ObjectNumber
+                                                        number="{view>quantity}"
+                                                    />
+                                                    <Text text="{view>uom}" />
+                                                    <ObjectNumber
+                                                        number="{view>availableQty}"
+                                                    />
+                                                    <ObjectNumber
+                                                        number="{view>balanceQty}"
+                                                        state="{view>criticalityState}"
+                                                    />
+                                                    <ObjectStatus
+                                                        text="{view>criticalityText}"
+                                                        state="{view>criticalityState}"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <!-- Stock Validation -->
+                    <uxap:ObjectPageSection title="Stock Checking">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <Table
+                                        items="{view>/items}"
+                                        class="sapUiResponsiveMargin"
+                                        width="auto"
+                                    >
+                                        <columns>
+                                            <Column>
+                                                <Text text="Material ID" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Material Name" />
+                                            </Column>
+                                            <Column hAlign="End">
+                                                <Text text="Before Stock" />
+                                            </Column>
+                                            <Column hAlign="End">
+                                                <Text text="Issue Qty" />
+                                            </Column>
+                                            <Column hAlign="End">
+                                                <Text text="After Stock" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Status" />
+                                            </Column>
+                                        </columns>
+
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text
+                                                        text="{view>materialId}"
+                                                    />
+                                                    <Text
+                                                        text="{view>materialName}"
+                                                    />
+                                                    <ObjectNumber
+                                                        number="{view>stockBefore}"
+                                                    />
+                                                    <ObjectNumber
+                                                        number="{view>quantity}"
+                                                    />
+                                                    <ObjectNumber
+                                                        number="{view>stockAfter}"
+                                                    />
+                                                    <ObjectStatus
+                                                        text="{view>stockStatus}"
+                                                        state="{view>stockState}"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <!-- Refurbishment -->
+                    <uxap:ObjectPageSection title="Refurbished Product Details">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <HBox wrap="Wrap">
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label
+                                                    text="Refurbished Product"
+                                                />
+                                                <ObjectStatus
+                                                    text="{view>/refurbishedProduct}"
+                                                    state="{= ${view>/refurbishedProduct} === 'Yes' ? 'Information' : 'None' }"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label
+                                                    text="Reference Material"
+                                                />
+                                                <Text
+                                                    text="{view>/referenceMaterial}"
+                                                />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginEnd sapUiSmallMarginBottom"
+                                            >
+                                                <Label text="Serial Number" />
+                                                <Text
+                                                    text="{view>/serialNumber}"
+                                                />
+                                            </VBox>
+                                        </HBox>
+                                        <Label text="Remarks" />
+                                        <Text
+                                            text="{view>/refurbishmentRemarks}"
+                                        />
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+
+                    <uxap:ObjectPageSection title="Item Validation Summary">
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection>
+                                <uxap:blocks>
+                                    <VBox class="sapUiMediumMargin">
+                                        <Title
+                                            text="Inventory Criticality Overview"
+                                            level="H3"
+                                        />
+
+                                        <HBox
+                                            wrap="Wrap"
+                                            justifyContent="SpaceAround"
+                                        >
+                                            <VBox class="sapUiMediumMargin">
+                                                <ObjectStatus
+                                                    text="GREEN - Stock Available"
+                                                    state="Success"
+                                                />
+                                                <ObjectNumber
+                                                    number="{view>/summary/green}"
+                                                    unit="Items"
+                                                    state="Success"
+                                                />
+                                            </VBox>
+
+                                            <VBox class="sapUiMediumMargin">
+                                                <ObjectStatus
+                                                    text="YELLOW - Just Enough"
+                                                    state="Warning"
+                                                />
+                                                <ObjectNumber
+                                                    number="{view>/summary/yellow}"
+                                                    unit="Items"
+                                                    state="Warning"
+                                                />
+                                            </VBox>
+
+                                            <VBox class="sapUiMediumMargin">
+                                                <ObjectStatus
+                                                    text="RED - Insufficient Stock"
+                                                    state="Error"
+                                                />
+                                                <ObjectNumber
+                                                    number="{view>/summary/red}"
+                                                    unit="Items"
+                                                    state="Error"
+                                                />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+        </content>
+
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button
+                    text="Cancel"
+                    press=".onCancel"
+                />
+                <Button
+                    text="Submit"
+                    type="Emphasized"
+                    icon="sap-icon://accept"
+                    press=".onSubmit"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
